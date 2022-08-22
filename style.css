@@ -1,26 +1,9 @@
-body {
-  background: black;
-}
-
-#container {
+#canvas1 {
+  border: 3px solid black;
   position: absolute;
-  width: 800px;
-  transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
-  font-size: 25px;
-}
-
-#canvas1 {
-  position: relative;
-  width: 100%;
-  height: 700px;
-}
-
-#slider {
-  width: 100%;
-}
-
-p {
-  color: white;
+  transform: translate(-50%, -50%);
+  height: 1000px;
+  width: 500px;
 }
