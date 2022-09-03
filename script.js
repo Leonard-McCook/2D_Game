@@ -20,3 +20,10 @@ class Raven {
         ctx.fillRect(this.x, this.y, this.width, this.height);
     }   
 }
+
+function animate(timestamp) {
+    ctx.clearRect(0, 0 , canvas.width, canvas.height);
+
+    requestAnimationFrame(animate);
+}
+animate();
