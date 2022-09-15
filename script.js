@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
             this.width = width;
             this.height = height;
             this.enemies = [];
-            this.enemyInterval = 100;
+            this.enemyInterval = 500;
             this.enemyTimer = 0;
             this.enemyTypes = ['worm', 'ghost'];
         }
@@ -77,10 +77,11 @@ document.addEventListener('DOMContentLoaded', function() {
             this.image = ghost;
             this.vx = Math.random() * 0.2 + 0.1;
             this.angle = 0;
+            this.curve = Math.random() * 3;
         }
         update(deltaTime){
             super.update(deltaTime);
-            this.y += Math.sin(this.angle) * 1;
+            this.y += Math.sin(this.angle) * this.curve;
             this.angle += 0.04;
         }
         draw(){
