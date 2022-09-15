@@ -76,6 +76,12 @@ document.addEventListener('DOMContentLoaded', function() {
             this.y = Math.random() * this.game.height * 0.6;
             this.image = ghost;
             this.vx = Math.random() * 0.2 + 0.1;
+            this.angle = 0;
+        }
+        update(deltaTime){
+            super.update(deltaTime);
+            this.y += Math.sin(this.angle) * 1;
+            this.angle += 0.04;
         }
         draw(){
             ctx.save();
