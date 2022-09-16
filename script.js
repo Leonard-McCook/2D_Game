@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
             this.y += Math.sin(this.angle) * this.curve;
             this.angle += 0.04;
         }
-        draw(){
+        draw(ctx){
             ctx.save();
             ctx.globalAlpha = 0.7;
             super.draw(ctx);
@@ -103,14 +103,23 @@ document.addEventListener('DOMContentLoaded', function() {
             this.y = 0 - this.height;
             this.image = spider;
             this.vx = 0;
-            this.vy = 1;
+            this.vy = Math.random() * 0.1 + 0.1;
+            this.maxLength = Math.random() * this.game.height;
         }
         update(deltaTime){
             super.update(deltaTime);
-            this.y += this.vy;
-            if (this.y > 200) this.vy *= -1;
+            this.y += this.vy * deltaTime;
+            if (this.y > this.maxLength) this.vy *= -1;
+        }
+        draw(ctx) {
+            ctx.beginPath();
+            ctx.moveTo(this.x + this.width/2, 0);
+            ctx.lineTo(this.x + this.width/2, this.y + 10);
+            ctx.stroke();
+            super.draw(ctx);
         }
     }
+    
     const game = new Game(ctx, canvas.width, canvas.height);
     let lastTime = 1;
     function animate(timeStamp) {
