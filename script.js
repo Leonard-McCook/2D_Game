@@ -35,10 +35,26 @@ window.addEventListener('load', function() {
             this.height = 200;
             this.x = 0;
             this.y = this.gameHeight - this.height;
+            this.image = document.getElementById('playerImage');
+            this.frameX = 0;
+            this.frameY = 0;
+            this.speed = 3;
         }
        draw(context) {
-            context.fillStyle = 'white';
+            context.fillStyle = 'green';
             context.fillRect(this.x, this.y, this.width, this.height);
+            context.drawImage(this.image, this.frameX * this.width, this.frameY * this.height,this.width, this.height, this.x, this.y, this.width, this.height);
+        }
+        update(input){
+            //horizontal movement
+            this.x += this.speed;
+            if (input.keys.indexOf('ArrowRight') > -1){
+                this.speed = 5;
+            } else if (input.keys.indexOf('ArrowLeft') > -1){
+                this.speed = -5;
+            } else {
+                this.speed = 0;
+            }
         }
     }
     class Background {
@@ -59,9 +75,12 @@ window.addEventListener('load', function() {
 
     const input = new InputHandler();
     const player = new Player(canvas.widthg, canvas.height);
-    player.draw(ctx);
     
     function animate() {
-
+        ctx.clearRect(0,0, canvas.width, canvas.height);
+        player.draw(ctx);
+        player.update(input);
+        requestAnimationFrame(animate);
     }
+    animate();
 });
