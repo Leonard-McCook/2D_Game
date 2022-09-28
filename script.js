@@ -4,7 +4,9 @@ window.addEventListener('load', function() {
     canvas.width = 800;
     canvas.height = 720;
     let enemies = [];
+    let score = 0;
 
+    
     class InputHandler {
         constructor(){
             this.keys = [];
@@ -129,6 +131,7 @@ window.addEventListener('load', function() {
             this.frameTimer = 0;
             this.frameInterval = 1000/this.fps;
             this.speed = 8;
+            this.markedForDeletion = false;
         }
         draw(context){
             context.drawImage(this.image, this.frameX * this.width , 0, this.width, this.height, this.x, this.y, this.width, this.height);
@@ -142,13 +145,17 @@ window.addEventListener('load', function() {
                 this.frameTimer += deltaTime;
             }
             this.x -= this.speed;
+            if (this.x < 0 - this.width) {
+                this.markedForDeletion = true;
+                score++;
+            }
         }
-
     }
-    
-    function handleEnemies(deltaTime){
+
+  function handleEnemies(deltaTime){
         if (enemyTimer > enemyInterval + randomEnemyInterval){
             enemies.push(new Enemy(canvas.width, canvas.height));
+            console.log(enemies);
             enemyTimer = 0;
         } else {
             enemyTimer += deltaTime;
@@ -156,11 +163,16 @@ window.addEventListener('load', function() {
         enemies.forEach(enemy => {
             enemy.draw(ctx);
             enemy.update(deltaTime);
-        })
+        });
+        enemies = enemies.filter(enemy => !enemy.markedForDeletion);
     }
 
-    function displayStatusText() {
-    
+    function displayStatusText(context) {
+        context.font = '40px Helvetica';
+        context.fillStyle = 'black';
+        context.fillText('Score: ' + score, 20, 50);
+        context.fillStyle = 'white';
+        context.fillText('Score: ' + score, 22, 52);
     }
     
     const input = new InputHandler();
@@ -181,6 +193,7 @@ window.addEventListener('load', function() {
         player.draw(ctx);
         player.update(input, deltaTime);
         handleEnemies(deltaTime);
+        displayStatusText(ctx);
         requestAnimationFrame(animate);
     }
     animate(0);
