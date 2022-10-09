@@ -1,5 +1,5 @@
 class Layer {
-    constructor(game, height, speedModifier, image){
+    constructor(game, width, height, speedModifier, image){
         this.game = game;
         this.width = width;
         this.height = height;
@@ -14,7 +14,7 @@ class Layer {
     }
     draw(context){
         context.drawImage(this.image, this.x, this.y, this.width, this.height);
-        context.drawImage(this.image, this.x, + this.width, this.y, this.width, this.height);
+        context.drawImage(this.image, this.x + this.width, this.y, this.width, this.height);
     }
 }
 
@@ -24,7 +24,7 @@ export class Background {
         this.width = 1667;
         this.height = 500;
         this.layer1image = document.getElementById('layer1');
-        this.layer1image = document.getElementById('layer2');
+        this.layer2image = document.getElementById('layer2');
         this.layer3image = document.getElementById('layer3');
         this.layer4image = document.getElementById('layer4');
         this.layer5image = document.getElementById('layer5');
