@@ -15,6 +15,16 @@ class Enemy {
 }
 
 class FlyingEnemy extends Enemy {
+    constructor(game){
+        super();
+        this.game = game;
+        this.width = 60;
+        this.height = 44;
+        this.x = 200;
+        this.y = 200;
+        this.speedX = 2;
+        this.maxFrame = 5;
+    }
 
 }
 
