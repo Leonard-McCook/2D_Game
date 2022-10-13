@@ -1,7 +1,7 @@
 import { Player } from './player.js';
 import { InputHandler } from './input.js';
 import { Background } from './background.js';
-import { flyingEnemy, ClimbingEnemy, GroundEnemy } from './enemies.js';
+import { FlyingEnemy, ClimbingEnemy, GroundEnemy } from './enemies.js';
 
 window.addEventListener('load', function(){
     const canvas = document.getElementById('canvas1');
@@ -33,10 +33,17 @@ window.addEventListener('load', function(){
             } else {
                 this.enemyTimer += deltaTime;
             }
+            this.enemies.forEach(enemy => {
+                enemy.update(deltaTime);
+                if (enemy.markedForDeletion) this.enemies.splice(this.enemies.indexOf(enemy), 1);
+            });
         }
         draw(context){
             this.background.draw(context);
             this.player.draw(context);
+            this.enemies.forEach(enemy => {
+                enemy.draw(context);
+            })
         }
         addEnemy(){
             this.enemies.push(new FlyingEnemy(this));
