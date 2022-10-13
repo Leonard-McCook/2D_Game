@@ -9,7 +9,7 @@ class Enemy {
     }
     update(deltaTime){
         // movement
-        this.x -= this.speedX;
+        this.x -= this.speedX + this.game.speed;
         this.y += this.speedY;
         if (this.frameTimer > this.frameInterval){
             this.frameTimer = 0;
@@ -38,14 +38,31 @@ export class FlyingEnemy extends Enemy {
         this.speedY = 0;
         this.maxFrame = 5;
         this.image = document.getElementById('enemy_fly');
+        this.angle = 0;
+        this.va = Math.random() * 0.1 + 0.1;
     }
     update(deltaTime){
         super.update(deltaTime);
+        this.angle += this.va;
+        this.y += Math.sin(this.angle);
+
     }
 
 }
 
 export class GroundEnemy extends Enemy {
+    constructor(game){
+        super();
+        this.game = game;
+        this.width = 60;
+        this.height = 87;
+        this.x = this.game.width;
+        this.y = this.game.height - this.height - this.game.groundMargin;
+        this.image = document.getElementById('enemy_plant');
+        this.speedX = 0;
+        this.speedY = 0;
+        this.maxFrame = 1;
+    }
 
 }
 
