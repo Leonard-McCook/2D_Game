@@ -37,11 +37,11 @@ export class Fire extends Particle {
     constructor(game, x, y){
         super(game);
         this.image = document.getElementById('fire');
-        this.size = Math.random() * 100 + 100;
+        this.size = Math.random() * 100 + 80;
         this.x = x;
         this.y = y;
         this.speedX = 1;
-        this.speed = 1;
+        this.speedY = 1;
         this.angle = 0;
         this.va = Math.random() * 0.2 - 0.1;
     }
