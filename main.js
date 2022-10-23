@@ -31,7 +31,7 @@ window.addEventListener('load', function(){
             this.score = 0;
             this.fontColor = 'black';
             this.time = 0;
-            this.maxTime = 20000;
+            this.maxTime = 60000;
             this.gameOver = false;
             this.player.currentState = this.player.states[0];
             this.player.currentState.enter();
@@ -58,7 +58,7 @@ window.addEventListener('load', function(){
                 if (particle.markedForDeletion) this.particles.splice(index, 1);
             });
             if (this.particles.length > this.maxParticles){
-                this.particles = this.particles.slice(0, this.maxParticles);
+                this.particles.length = this.Particles;
             }
             // handle collision sprites
             this.collisions.forEach((collision, index) => {
