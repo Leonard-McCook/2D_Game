@@ -7,7 +7,7 @@ Hold the Enter/Return Key to Perform a Rolling Attack.
 
 Pressing the Down Arrow Key While in The Air to Perform a Ground/Slam Attack.
 
-Defeat a Minimum of 45 Enemies in Less Than One Minute to Succeed.
+Goal: Defeat a Minimum of 45 Enemies in Less Than One Minute.
 
 Project Inspired By Franks Laboratory www.youtube.com/c/Frankslaboratory
 
